@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-function Header() {
+function Footer() {
   return (
   <footer className="footer">
     <p className="footer__copyright">&copy; 2020 Mesto Russia</p>
@@ -9,4 +9,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default Footer;
