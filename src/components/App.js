@@ -1,44 +1,16 @@
-import logo from './images/header__logo.svg'
-import './index.css';
+
+import '../index.css';
+import Header from './Header';
+import Main from './Main';
+import Footer from './Footer';
 
 function App() {
   return (
     <div className="page">
       <div className="page__container">
-
-        <header className="header">
-          <img className="logo" src={logo} alt="Логотип"/>
-        </header>
-
-        <main className="content">
-
-          <section className="profile">
-            <div className="profile__avatar">
-            <img className="profile__avatar-image" src="#" alt="Аватар профиля"/>
-              <button type="button" className="button button_type_edit-avatar" aria-label="Изменить аватар"></  button>
-            </div>
-
-            <div className="profile__info">
-              <h1 className="profile__name"></h1>
-              <button type="button" className="button button_type_edit" aria-label="Редактировать профиль"></button>
-              <p className="profile__job"></p>
-          </div>
-
-            <button type="button" className="button button_type_add" aria-label="Добавить фото"></button>
-
-          </section>
-
-          <section className="cards">
-            <ul className="cards__list">
-
-            </ul>
-          </section>
-
-        </main>
-
-        <footer className="footer">
-          <p className="footer__copyright">&copy; 2020 Mesto Russia</p>
-        </footer>
+        <Header/>
+        <Main/>
+        <Footer/>
 
         <article className="popup" id="popupProfile">
 
