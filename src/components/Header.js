@@ -1,6 +1,6 @@
 import React from 'react';
 
-import logo from '../images/header__logo.svg'
+import logo from '../images/header__logo.svg';
 
 function Header() {
   return (
@@ -8,6 +8,6 @@ function Header() {
       <img className="logo" src={logo} alt="Логотип"/>
     </header>
   );
-}
+};
 
 export default Header;

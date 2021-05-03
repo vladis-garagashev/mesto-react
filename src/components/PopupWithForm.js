@@ -3,7 +3,7 @@ import React from 'react';
 
 function PopupWithForm({name, title, children, isOpen, onClose}) {
   return (
-    <article className={`popup popup_type_${name} ${isOpen ? 'popup_opened' : ''}`}   id="popupProfile">
+    <article className={`popup popup_type_${name} ${isOpen ? 'popup_opened' : ''}`}>
 
       <div className="popup__container">
         <form className="form form_type_edit-profile" method="POST" name={name} noValidate>
@@ -20,7 +20,7 @@ function PopupWithForm({name, title, children, isOpen, onClose}) {
       </div>
 
     </article>
-  )
-}
+  );
+};
 
 export default PopupWithForm;
