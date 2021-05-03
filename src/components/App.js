@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -7,26 +7,24 @@ import ImagePopup from './ImagePopup';
 
 
 function App() {
-  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
-  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
-  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
-  const [isImagePreviePopupOpen, setImagePreviePopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState({});
+  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setAddPlacePopupOpen] =useState(false);
+  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(null);
 
   function handleEditAvatarClick() {
-    setEditAvatarPopupOpen(!isEditAvatarPopupOpen);
+    setEditAvatarPopupOpen(true);
   };
 
   function handleEditProfileClick() {
-    setEditProfilePopupOpen(!isEditProfilePopupOpen);
+    setEditProfilePopupOpen(true);
   };
 
   function handleAddPlaceClick() {
-    setAddPlacePopupOpen(!isAddPlacePopupOpen);
+    setAddPlacePopupOpen(true);
   };
 
   function handleCardClick(card) {
-    setImagePreviePopupOpen(!isImagePreviePopupOpen);
     setSelectedCard(card);
   };
 
@@ -34,8 +32,7 @@ function App() {
     setEditAvatarPopupOpen(false);
     setEditProfilePopupOpen(false);
     setAddPlacePopupOpen(false);
-    setImagePreviePopupOpen(false);
-    setSelectedCard({});
+    setSelectedCard(null);
   };
 
   return (
@@ -51,7 +48,7 @@ function App() {
 
       <Footer/>
 
-      <PopupWithForm title="Редактировать профиль" name="edit-profile" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
+      <PopupWithForm title="Редактировать профиль" name="edit-profile" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} btnText="Сохранение...">
         <section className="form__section">
           <input className="form__item form__item_element_name" type="text" name="name" id="name" placeholder="Имя" minLength="2" maxLength="40" required/>
           <span className="form__item-error" id="name-error"></span>
@@ -62,7 +59,7 @@ function App() {
         </section>
       </PopupWithForm>
 
-      <PopupWithForm title="Новое место" name="add-card" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
+      <PopupWithForm title="Новое место" name="add-card" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} btnText="Сохранение...">
         <section className="form__section">
           <input className="form__item form__item_element_name" type="text" name="name" id="image-name" placeholder="Название" minLength="2" maxLength="30" required/>
           <span className="form__item-error" id="image-name-error"></span>
@@ -73,7 +70,7 @@ function App() {
         </section>
       </PopupWithForm>
 
-      <PopupWithForm title="Обновить аватар" name="edit-avatar" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}>
+      <PopupWithForm title="Обновить аватар" name="edit-avatar" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} btnText="Сохранение...">
         <section className="form__section">
           <input className="form__item form__item_element_image-link" type="url" name="avatar" id="avatar" placeholder="Ссылка на картинку" required/>
           <span className="form__item-error" id="avatar-error"></span>
@@ -82,7 +79,7 @@ function App() {
 
       <PopupWithForm title="Вы уверены?" name="delete-card"/>
 
-      <ImagePopup card={selectedCard} isOpen={isImagePreviePopupOpen} onClose={closeAllPopups}/>
+      <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
 
     </div>
   );
