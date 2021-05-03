@@ -11,10 +11,7 @@ function PopupWithForm({name, title, btnText, children, isOpen, onClose}) {
 
           {children}
 
-          <button className="form__submit-button" type="submit">
-            <p className="form__submit-title">Сохранить</p>
-            <p className="form__submit-loading">{btnText}</p>
-          </button>
+          <button className="form__submit-button" type="submit">{btnText}</button>
           <button className="button button_type_close" type="reset" aria-label="Закрыть" onClick={onClose}></button>
         </form>
       </div>

@@ -48,7 +48,7 @@ function App() {
 
       <Footer/>
 
-      <PopupWithForm title="Редактировать профиль" name="edit-profile" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} btnText="Сохранение...">
+      <PopupWithForm title="Редактировать профиль" name="edit-profile" btnText="Сохранить" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
         <section className="form__section">
           <input className="form__item form__item_element_name" type="text" name="name" id="name" placeholder="Имя" minLength="2" maxLength="40" required/>
           <span className="form__item-error" id="name-error"></span>
@@ -59,7 +59,7 @@ function App() {
         </section>
       </PopupWithForm>
 
-      <PopupWithForm title="Новое место" name="add-card" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} btnText="Сохранение...">
+      <PopupWithForm title="Новое место" name="add-card" btnText="Сохранить" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
         <section className="form__section">
           <input className="form__item form__item_element_name" type="text" name="name" id="image-name" placeholder="Название" minLength="2" maxLength="30" required/>
           <span className="form__item-error" id="image-name-error"></span>
@@ -70,14 +70,14 @@ function App() {
         </section>
       </PopupWithForm>
 
-      <PopupWithForm title="Обновить аватар" name="edit-avatar" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} btnText="Сохранение...">
+      <PopupWithForm title="Обновить аватар" name="edit-avatar" btnText="Сохранить" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}>
         <section className="form__section">
           <input className="form__item form__item_element_image-link" type="url" name="avatar" id="avatar" placeholder="Ссылка на картинку" required/>
           <span className="form__item-error" id="avatar-error"></span>
         </section>
       </PopupWithForm>
 
-      <PopupWithForm title="Вы уверены?" name="delete-card"/>
+      <PopupWithForm title="Вы уверены?" name="delete-card" btnText="Да"/>
 
       <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
 
