@@ -1,4 +1,4 @@
-export default class Api {
+class Api {
   constructor({adress, token, cohortId}) {
     this._adress = adress;
     this._token = token;
