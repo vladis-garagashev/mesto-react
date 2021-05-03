@@ -3,7 +3,7 @@ import api from '../utils/Api'
 import Card from './Card';
 
 
-function Main() {
+function Main({onEditProfile, onEditAvatar, onAddPlace}) {
   const [userAvatar, setUserAvatar] = React.useState();
   const [userName, setUserName] = React.useState();
   const [userDescription, setUserDescription] = React.useState();
@@ -29,21 +29,6 @@ function Main() {
     .catch(error => console.log(error));
   })
 
-  function handleEditAvatarClick() {
-    document.querySelector('#popupAvatar').classList.add('popup_opened');
-    console.log(cards);
-  };
-
-  function handleEditProfileClick() {
-    document.querySelector('#popupProfile').classList.add('popup_opened');
-
-  };
-
-  function handleAddPlaceClick() {
-    document.querySelector('#popupCard').classList.add('popup_opened');
-
-  };
-
   return (
     <main className="content">
 
@@ -51,30 +36,29 @@ function Main() {
         <div className="profile__avatar">
           <img className="profile__avatar-image" src={userAvatar} alt="Аватар профиля"/>
           <button
-          type="button"
-          className="button button_type_edit-avatar"
-          aria-label="Изменить аватар"
-          onClick={handleEditAvatarClick}
-          >
+            type="button"
+            className="button button_type_edit-avatar"
+            aria-label="Изменить аватар"
+            onClick={onEditAvatar}>
           </button>
         </div>
 
         <div className="profile__info">
           <h1 className="profile__name">{userName}</h1>
           <button
-          type="button"
-          className="button button_type_edit"
-          aria-label="Редактировать профиль"
-          onClick={handleEditProfileClick}>
+            type="button"
+            className="button button_type_edit"
+            aria-label="Редактировать профиль"
+            onClick={onEditProfile}>
           </button>
           <p className="profile__job">{userDescription}</p>
         </div>
 
         <button
-        type="button"
-        className="button button_type_add"
-        aria-label="Добавить фото"
-        onClick={handleAddPlaceClick}>
+          type="button"
+          className="button button_type_add"
+          aria-label="Добавить фото"
+          onClick={onAddPlace}>
         </button>
 
       </section>
