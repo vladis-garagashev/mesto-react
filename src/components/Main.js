@@ -19,15 +19,11 @@ function Main({onEditProfile, onEditAvatar, onAddPlace, onCardClick}) {
       })
       .catch(error => console.log(error));
 
-  }, []);
-
-  React.useEffect(() => {
-
-    api.getInitialCards()
-    .then((data) => {
-      setCards(data)
-    })
-    .catch(error => console.log(error));
+      api.getInitialCards()
+      .then((data) => {
+        setCards(data)
+      })
+      .catch(error => console.log(error));
 
   }, []);
 
@@ -36,7 +32,7 @@ function Main({onEditProfile, onEditAvatar, onAddPlace, onCardClick}) {
 
       <section className="profile">
         <div className="profile__avatar">
-          <img className="profile__avatar-image" src={userAvatar} alt="Аватар профиля"/>
+          <img className="profile__avatar-image" src={userAvatar} alt={userName}/>
           <button
             type="button"
             className="button button_type_edit-avatar"
@@ -69,7 +65,7 @@ function Main({onEditProfile, onEditAvatar, onAddPlace, onCardClick}) {
         <ul className="cards__list">
           {cards.map((card) => (
             <Card key={card._id} card={card} onCardClick={onCardClick}/>
-          ))};
+          ))}
         </ul>
       </section>
 
