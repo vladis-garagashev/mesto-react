@@ -19,7 +19,7 @@ function Main({onEditProfile, onEditAvatar, onAddPlace, onCardClick}) {
       })
       .catch(error => console.log(error));
 
-  });
+  }, []);
 
   React.useEffect(() => {
 
