@@ -1,26 +1,37 @@
 import React from 'react';
 import api from '../utils/Api'
+import Card from './Card';
 
 
 function Main() {
-
   const [userAvatar, setUserAvatar] = React.useState();
   const [userName, setUserName] = React.useState();
   const [userDescription, setUserDescription] = React.useState();
+  const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
 
       api.getUserInfo()
       .then((userData) => {
-        setUserAvatar(userData.avatar)
-        setUserName(userData.name)
-        setUserDescription(userData.about)
+        setUserAvatar(userData.avatar);
+        setUserName(userData.name);
+        setUserDescription(userData.about);
       })
       .catch(error => console.log(error));
 
   })
+
+  React.useEffect(() => {
+    api.getInitialCards()
+    .then((data) => {
+      setCards(data)
+    })
+    .catch(error => console.log(error));
+  })
+
   function handleEditAvatarClick() {
     document.querySelector('#popupAvatar').classList.add('popup_opened');
+    console.log(cards);
   };
 
   function handleEditProfileClick() {
@@ -70,7 +81,9 @@ function Main() {
 
       <section className="cards">
         <ul className="cards__list">
-
+          {cards.map(({_id, ...card}) => (
+            <Card key={_id} {...card}/>
+          ))}
         </ul>
       </section>
 
