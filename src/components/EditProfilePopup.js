@@ -3,7 +3,7 @@ import PopupWithForm from './PopupWithForm';
 import {CurrentUserContext} from '../contexts/CurrentUserContext';
 
 
-function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
+function EditProfilePopup({isOpen, onClose, onUpdateUser, isLoading}) {
 
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -48,7 +48,7 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
   //-----------------------------------
 
   return (
-    <PopupWithForm title="Редактировать профиль" name="edit-profile" btnText="Сохранить" isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}>
+    <PopupWithForm title="Редактировать профиль" name="edit-profile" btnText={isLoading ? 'Сохранение...' : 'Сохранить'} isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}>
       <section className="form__section">
         <input className="form__item form__item_element_name" type="text" name="name" id="name" placeholder="Имя" value={name} onChange={handleChange} minLength="2" maxLength="40" required/>
         <span className="form__item-error" id="name-error"></span>
@@ -59,7 +59,7 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
       </section>
     </PopupWithForm>
   );
-  
+
 };
 
 export default EditProfilePopup;

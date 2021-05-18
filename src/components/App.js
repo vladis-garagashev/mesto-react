@@ -19,6 +19,7 @@ function App() {
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] =useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
+  const [isLoading, setLoading] = useState(false);
 
   //-----------------------------------
 
@@ -99,34 +100,40 @@ function App() {
 
   // Обработчики обновления данных пользователя
   function handleUpdateUser(formData) {
+    setLoading(true)
     api.editUserInfo(formData)
       .then(NewUserData => {
         setCurrentUser(NewUserData);
+        closeAllPopups();
       })
       .catch(error => console.log(error))
-      .finally(() => closeAllPopups());
+      .finally(() => setLoading(false));
   };
 
   function handleUpdateAvatar(formData) {
+    setLoading(true)
     api.editUserAvatar(formData)
       .then(NewUserAvatar => {
         setCurrentUser(NewUserAvatar);
+        closeAllPopups();
       })
       .catch(error => console.log(error))
-      .finally(() => closeAllPopups());
+      .finally(() => setLoading(false));
   };
 
   //-----------------------------------
   // Обработчик добавления карточки
 
   function handleAddPlaceSubmit(formData) {
+    setLoading(true)
     api.addCard(formData)
     .then(newCard => {
       setCards([newCard, ...cards]);
+      closeAllPopups();
     })
     .catch(error => console.log(error))
-    .finally(() => closeAllPopups());
-  }
+    .finally(() => setLoading(false));
+  };
 
   //-----------------------------------
 
@@ -147,21 +154,17 @@ function App() {
 
         <Footer/>
 
-        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>
-        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar}/>
-        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit}/>
-
-
-
+        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} isLoading={isLoading}/>
+        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} isLoading={isLoading}/>
+        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} isLoading={isLoading}/>
         <PopupWithForm title="Вы уверены?" name="delete-card" btnText="Да"/>
-
         <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
 
       </CurrentUserContext.Provider>
 
     </div>
   );
-  
+
 };
 
 export default App;

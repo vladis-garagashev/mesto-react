@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import PopupWithForm from './PopupWithForm';
 
 
-function AddPlacePopup({isOpen, onClose, onAddPlace}) {
+function AddPlacePopup({isOpen, onClose, onAddPlace, isLoading}) {
 
   const linkRef = useRef();
   const nameRef = useRef();
@@ -17,12 +17,12 @@ function AddPlacePopup({isOpen, onClose, onAddPlace}) {
       name: nameRef.current.value,
       link: linkRef.current.value
     });
-  }
+  };
 
   //-----------------------------------
 
   return (
-    <PopupWithForm title="Новое место" name="add-card" btnText="Сохранить" isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}>
+    <PopupWithForm title="Новое место" name="add-card" btnText={isLoading ? 'Сохранение...' : 'Сохранить'} isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}>
       <section className="form__section">
         <input className="form__item form__item_element_name" type="text" name="name" id="image-name" placeholder="Название" minLength="2" maxLength="30" required ref={nameRef}/>
         <span className="form__item-error" id="image-name-error"></span>
@@ -33,7 +33,7 @@ function AddPlacePopup({isOpen, onClose, onAddPlace}) {
       </section>
     </PopupWithForm>
   );
-  
+
 };
 
 export default AddPlacePopup;
