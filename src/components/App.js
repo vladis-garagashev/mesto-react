@@ -3,9 +3,10 @@ import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
+import EditProfilePopup from './EditProfilePopup';
 import ImagePopup from './ImagePopup';
 import api from '../utils/Api';
-import {CurrentUserContext} from '../contexts/CurrentUserContext';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 
 function App() {
@@ -50,6 +51,15 @@ function App() {
     setSelectedCard(null);
   };
 
+  function handleUpdateUser(formData) {
+    api.editUserInfo(formData)
+      .then(NewUserData => {
+        setCurrentUser(NewUserData);
+      })
+      .catch(error => console.log(error))
+      .finally(() => closeAllPopups())
+  };
+
   return (
     <div className="page__container">
 
@@ -64,16 +74,7 @@ function App() {
 
         <Footer/>
 
-        <PopupWithForm title="Редактировать профиль" name="edit-profile" btnText="Сохранить" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
-          <section className="form__section">
-            <input className="form__item form__item_element_name" type="text" name="name" id="name" placeholder="Имя" minLength="2" maxLength="40" required/>
-            <span className="form__item-error" id="name-error"></span>
-          </section>
-          <section className="form__section">
-            <input className="form__item form__item_element_job" type="text" name="about" id="about" placeholder="О себе" minLength="2" maxLength="200" required/>
-            <span className="form__item-error" id="about-error"></span>
-          </section>
-        </PopupWithForm>
+        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>
 
         <PopupWithForm title="Новое место" name="add-card" btnText="Сохранить" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
           <section className="form__section">
