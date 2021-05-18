@@ -80,26 +80,27 @@ class Api {
     .then(res => this._handleResponse(res));
   };
 
-  // Функция проставки лайка для карточки
-  likeCard(id) {
-    return fetch(`${this._adress}/v1/${this._cohortId}/cards/likes/${id}`, {
-      method: 'PUT',
-      headers: {
-        authorization: this._token
-      }
-    })
-    .then(res => this._handleResponse(res));
-  };
+  // Функция проставки и удаления лайка для карточки
+  changeLikeCardStatus(id, isNotLiked) {
 
-  // Функция удаления лайка у карточки
-  removeLikeCard(id) {
-    return fetch(`${this._adress}/v1/${this._cohortId}/cards/likes/${id}`, {
-      method: 'DELETE',
-      headers: {
-        authorization: this._token
-      }
-    })
-    .then(res => this._handleResponse(res));
+    if(isNotLiked) {
+      return fetch(`${this._adress}/v1/${this._cohortId}/cards/likes/${id}`, {
+        method: 'PUT',
+        headers: {
+          authorization: this._token
+        }
+      })
+      .then(res => this._handleResponse(res));
+
+    } else {
+      return fetch(`${this._adress}/v1/${this._cohortId}/cards/likes/${id}`, {
+        method: 'DELETE',
+        headers: {
+          authorization: this._token
+        }
+      })
+      .then(res => this._handleResponse(res));
+    };
   };
 
   // Функция удаления карточки

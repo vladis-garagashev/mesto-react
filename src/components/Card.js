@@ -2,7 +2,7 @@ import React from 'react';
 import {CurrentUserContext} from '../contexts/CurrentUserContext';
 
 
-function Card({card, onCardClick}) {
+function Card({card, onCardClick, onCardLike, onCardDelete}) {
 
   const currentUser = React.useContext(CurrentUserContext);
 
@@ -13,7 +13,7 @@ function Card({card, onCardClick}) {
 
   // Создаём переменную, которую после зададим в `className` для кнопки лайка
   const cardLikeButtonClassName = (
-    `button ${isLiked ? 'button_type_like_active' : 'button_type_like'}`
+    `button button_type_like ${isLiked ? 'button_type_like_active' : ''}`
   );
   // Создаём переменную, которую после зададим в `className` для кнопки удаления
   const cardDeleteButtonClassName = (
@@ -25,6 +25,15 @@ function Card({card, onCardClick}) {
 
   };
 
+  function handleLikeClick() {
+    onCardLike(card);
+
+  };
+
+  function handleDeleteClick() {
+    onCardDelete(card);
+
+  };
   return (
 
     <li className="card">
@@ -32,10 +41,17 @@ function Card({card, onCardClick}) {
       <div className="card__content">
         <h2 className="card__heading">{card.name}</h2>
         <div className="card__like">
-          <button type="button" className={cardLikeButtonClassName} aria-label="Лайк"></button>
+          <button type="button"
+            className={cardLikeButtonClassName}
+            aria-label="Лайк"
+            onClick={handleLikeClick}></button>
           <p className="card__likes-counter">{card.likes.length}</p>
         </div>
-        <button  type="button" className={cardDeleteButtonClassName} aria-label="Удалить карточку"></button>
+        <button
+          type="button"
+          className={cardDeleteButtonClassName}
+          aria-label="Удалить карточку"
+          onClick={handleDeleteClick}></button>
       </div>
     </li>
   );

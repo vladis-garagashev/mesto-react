@@ -20,6 +20,27 @@ function Main({onEditProfile, onEditAvatar, onAddPlace, onCardClick}) {
 
   }, []);
 
+  function handleCardLike(card) {
+    // Проверяем, есть ли уже лайк на этой карточке
+    const isLiked = card.likes.some(i => i._id === currentUser._id);
+
+    // Отправляем запрос в API и получаем обновлённые данные карточки
+    api.changeLikeCardStatus(card._id, !isLiked)
+      .then((newCard) => {
+        setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+    })
+      .catch(error => console.log(error));
+}
+
+function handleCardDelete(card) {
+
+  // Отправляем запрос в API и удаляем карточку
+  api.deleteCard(card._id)
+    .then(() => {
+      setCards((state) => state.filter((c) => c._id !== card._id));
+  })
+    .catch(error => console.log(error));
+}
 
   return (
     <main className="content">
@@ -58,7 +79,11 @@ function Main({onEditProfile, onEditAvatar, onAddPlace, onCardClick}) {
       <section className="cards">
         <ul className="cards__list">
           {cards.map((card) => (
-            <Card key={card._id} card={card} onCardClick={onCardClick}/>
+            <Card key={card._id}
+              card={card}
+              onCardClick={onCardClick}
+              onCardLike={handleCardLike}
+              onCardDelete={handleCardDelete}/>
           ))}
         </ul>
       </section>
