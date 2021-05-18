@@ -4,6 +4,7 @@ import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import EditProfilePopup from './EditProfilePopup';
+import EditAvatarPopup from './EditAvatarPopup';
 import ImagePopup from './ImagePopup';
 import api from '../utils/Api';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
@@ -57,7 +58,16 @@ function App() {
         setCurrentUser(NewUserData);
       })
       .catch(error => console.log(error))
-      .finally(() => closeAllPopups())
+      .finally(() => closeAllPopups());
+  };
+
+  function handleUpdateAvatar(formData) {
+    api.editUserAvatar(formData)
+      .then(NewUserAvatar => {
+        setCurrentUser(NewUserAvatar);
+      })
+      .catch(error => console.log(error))
+      .finally(() => closeAllPopups());
   };
 
   return (
@@ -75,6 +85,7 @@ function App() {
         <Footer/>
 
         <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>
+        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar}/>
 
         <PopupWithForm title="Новое место" name="add-card" btnText="Сохранить" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
           <section className="form__section">
@@ -87,12 +98,6 @@ function App() {
           </section>
         </PopupWithForm>
 
-        <PopupWithForm title="Обновить аватар" name="edit-avatar" btnText="Сохранить" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}>
-          <section className="form__section">
-            <input className="form__item form__item_element_image-link" type="url" name="avatar" id="avatar" placeholder="Ссылка на картинку" required/>
-            <span className="form__item-error" id="avatar-error"></span>
-          </section>
-        </PopupWithForm>
 
         <PopupWithForm title="Вы уверены?" name="delete-card" btnText="Да"/>
 

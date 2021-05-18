@@ -20,7 +20,7 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
 
 
   // Обработчики изменения инпутов обновляют стейты
-  function handleNameValueChange(e) {
+  function handleChange(e) {
     setName(e.target.value);
   };
   function handleDescriptionValueChange(e) {
@@ -35,14 +35,14 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
     // Передаём значения управляемых компонентов во внешний обработчик
     onUpdateUser({
       name,
-      about: description,
+      about: description
     });
   }
 
   return (
     <PopupWithForm title="Редактировать профиль" name="edit-profile" btnText="Сохранить" isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}>
       <section className="form__section">
-        <input className="form__item form__item_element_name" type="text" name="name" id="name" placeholder="Имя" value={name} onChange={handleNameValueChange} minLength="2" maxLength="40" required/>
+        <input className="form__item form__item_element_name" type="text" name="name" id="name" placeholder="Имя" value={name} onChange={handleChange} minLength="2" maxLength="40" required/>
         <span className="form__item-error" id="name-error"></span>
       </section>
       <section className="form__section">
