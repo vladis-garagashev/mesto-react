@@ -5,6 +5,8 @@ class Api {
     this._cohortId = cohortId;
   };
 
+  //-----------------------------------
+
   // Функция обработки ответа промиса
   _handleResponse(res)  {
     if (res.ok) {
@@ -12,6 +14,8 @@ class Api {
     }
     return Promise.reject(`Ошибка ${res.status}`);
   }
+
+  //-----------------------------------
 
   // Функция получения информации о пользователе
   getUserInfo() {
@@ -22,6 +26,8 @@ class Api {
     })
     .then(res => this._handleResponse(res));
   };
+
+  //-----------------------------------
 
   // Функция редактирования аватара пользователя
   editUserAvatar(data) {
@@ -37,6 +43,8 @@ class Api {
     })
     .then(res => this._handleResponse(res));
   };
+
+  //-----------------------------------
 
   // Функция редактирования информации о пользователе
   editUserInfo(data) {
@@ -54,6 +62,8 @@ class Api {
     .then(res => this._handleResponse(res));
   };
 
+  //-----------------------------------
+
   // Функция получения стандартных карточек
   getInitialCards() {
     return fetch(`${this._adress}/v1/${this._cohortId}/cards`, {
@@ -63,6 +73,8 @@ class Api {
     })
     .then(res => this._handleResponse(res));
   };
+
+  //-----------------------------------
 
   // Функция добавления новой карточки
   addCard(data) {
@@ -79,6 +91,8 @@ class Api {
     })
     .then(res => this._handleResponse(res));
   };
+
+  //-----------------------------------
 
   // Функция проставки и удаления лайка для карточки
   changeLikeCardStatus(id, isNotLiked) {
@@ -103,6 +117,8 @@ class Api {
     };
   };
 
+  //-----------------------------------
+
   // Функция удаления карточки
   deleteCard(id) {
     return fetch(`${this._adress}/v1/${this._cohortId}/cards/${id}`, {
@@ -115,6 +131,8 @@ class Api {
   };
 
 };
+
+//-----------------------------------
 
 //Инстанцирование экземпляра класса Api
 const api = new Api({

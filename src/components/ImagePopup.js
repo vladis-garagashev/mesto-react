@@ -2,6 +2,7 @@ import React from 'react';
 
 
 function ImagePopup({card, onClose}) {
+
   return (
     <article className={`popup ${card ? 'popup_opened' : ''}`} >
 
@@ -17,6 +18,7 @@ function ImagePopup({card, onClose}) {
 
     </article>
   );
+  
 };
 
 export default ImagePopup;

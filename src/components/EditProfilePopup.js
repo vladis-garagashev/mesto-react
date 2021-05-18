@@ -11,6 +11,8 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
   // Подписка на контекст
   const currentUser = useContext(CurrentUserContext);
 
+  //-----------------------------------
+
   // После загрузки текущего пользователя из API
   // его данные будут использованы в управляемых компонентах.
   useEffect(() => {
@@ -19,6 +21,8 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
   }, [currentUser]);
 
 
+  //-----------------------------------
+
   // Обработчики изменения инпутов обновляют стейты
   function handleChange(e) {
     setName(e.target.value);
@@ -26,6 +30,8 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
   function handleDescriptionValueChange(e) {
     setDescription(e.target.value);
   };
+
+  //-----------------------------------
 
   // Обработчик сабмита формы
   function handleSubmit(e) {
@@ -39,6 +45,8 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
     });
   }
 
+  //-----------------------------------
+
   return (
     <PopupWithForm title="Редактировать профиль" name="edit-profile" btnText="Сохранить" isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}>
       <section className="form__section">
@@ -51,6 +59,7 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
       </section>
     </PopupWithForm>
   );
+  
 };
 
 export default EditProfilePopup;

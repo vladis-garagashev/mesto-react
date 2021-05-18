@@ -2,6 +2,7 @@ import React from 'react';
 
 
 function PopupWithForm({name, title, btnText, children, isOpen, onClose, onSubmit}) {
+
   return (
     <article className={`popup popup_type_${name} ${isOpen ? 'popup_opened' : ''}`}>
 
@@ -18,6 +19,7 @@ function PopupWithForm({name, title, btnText, children, isOpen, onClose, onSubmi
 
     </article>
   );
+  
 };
 
 export default PopupWithForm;

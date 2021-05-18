@@ -3,7 +3,10 @@ import PopupWithForm from './PopupWithForm';
 
 
 function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
+
   const avatarRef = useRef();
+
+  //-----------------------------------
 
   // Обработчик сабмита формы
   function handleSubmit(e) {
@@ -14,6 +17,8 @@ function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
     });
   }
 
+  //-----------------------------------
+
   return (
     <PopupWithForm title="Обновить аватар" name="edit-avatar" btnText="Сохранить" isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}>
       <section className="form__section">
@@ -22,6 +27,7 @@ function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
       </section>
     </PopupWithForm>
   );
+  
 };
 
 export default EditAvatarPopup;
