@@ -13,7 +13,7 @@ function DeleteCardPopup({isOpen, onClose, isLoading, onCardDelete, card}) {
   //-----------------------------------
 
   return (
-    <PopupWithForm title="Вы уверены?" name="delete-card" btnText={isLoading ? 'Сохранение...' : 'Да.'} isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}/>
+    <PopupWithForm title="Вы уверены?" name="delete-card" btnText={isLoading ? 'Удаление...' : 'Да.'} isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}/>
   );
 
 };
