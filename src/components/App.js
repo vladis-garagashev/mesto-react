@@ -98,26 +98,26 @@ function App() {
   function handleUpdateUser(formData) {
     setLoading(true)
     api.editUserInfo(formData)
-      .then(NewUserData => {
-        setCurrentUser(NewUserData);
+      .then(newUserData => {
+        setCurrentUser(newUserData);
+        closeAllPopups();
       })
       .catch(error => console.log(error))
       .finally(() => {
-        closeAllPopups();
-        setLoading(false)
+        setLoading(false);
       });
   };
 
   function handleUpdateAvatar(formData) {
     setLoading(true)
     api.editUserAvatar(formData)
-      .then(NewUserAvatar => {
-        setCurrentUser(NewUserAvatar);
+      .then(newUserData => {
+        setCurrentUser(newUserData);
+        closeAllPopups();
       })
       .catch(error => console.log(error))
       .finally(() => {
-        closeAllPopups();
-        setLoading(false)
+        setLoading(false);
       });
   };
 
@@ -129,11 +129,11 @@ function App() {
     api.addCard(formData)
     .then(newCard => {
       setCards([newCard, ...cards]);
+      closeAllPopups();
     })
     .catch(error => console.log(error))
     .finally(() => {
-      closeAllPopups();
-      setLoading(false)
+      setLoading(false);
     });
   };
 
@@ -145,11 +145,11 @@ function App() {
     api.deleteCard(card._id)
       .then(() => {
         setCards((state) => state.filter((c) => c._id !== card._id));
+        closeAllPopups();
       })
       .catch(error => console.log(error))
       .finally(() => {
-        closeAllPopups();
-        setLoading(false)
+        setLoading(false);
       });
 
   };
