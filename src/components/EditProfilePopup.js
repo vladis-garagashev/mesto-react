@@ -18,7 +18,7 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser, isLoading}) {
   useEffect(() => {
     setName(currentUser?.name);
     setDescription(currentUser?.about);
-  }, [currentUser]);
+  }, [currentUser, isOpen]);
 
 
   //-----------------------------------
@@ -50,11 +50,11 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser, isLoading}) {
   return (
     <PopupWithForm title="Редактировать профиль" name="edit-profile" btnText={isLoading ? 'Сохранение...' : 'Сохранить'} isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}>
       <section className="form__section">
-        <input className="form__item form__item_element_name" type="text" name="name" id="name" placeholder="Имя" value={name} onChange={handleChange} minLength="2" maxLength="40" required/>
+        <input className="form__item form__item_element_name" type="text" name="name" id="name" placeholder="Имя" value={name || ''} onChange={handleChange} minLength="2" maxLength="40" required/>
         <span className="form__item-error" id="name-error"></span>
       </section>
       <section className="form__section">
-        <input className="form__item form__item_element_job" type="text" name="about" id="about" placeholder="О себе" value={description} onChange={handleDescriptionValueChange} minLength="2" maxLength="200" required/>
+        <input className="form__item form__item_element_job" type="text" name="about" id="about" placeholder="О себе" value={description || ''} onChange={handleDescriptionValueChange} minLength="2" maxLength="200" required/>
         <span className="form__item-error" id="about-error"></span>
       </section>
     </PopupWithForm>
