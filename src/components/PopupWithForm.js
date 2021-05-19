@@ -7,7 +7,7 @@ function PopupWithForm({name, title, btnText, children, isOpen, onClose, onSubmi
     <article className={`popup popup_type_${name} ${isOpen ? 'popup_opened' : ''}`}>
 
       <div className="popup__container">
-        <form className="form form_type_edit-profile" method="POST" name={name} noValidate onSubmit={onSubmit}>
+        <form className="form" method="POST" name={name} noValidate onSubmit={onSubmit}>
           <h3 className="form__heading">{title}</h3>
 
           {children}
@@ -19,7 +19,7 @@ function PopupWithForm({name, title, btnText, children, isOpen, onClose, onSubmi
 
     </article>
   );
-  
+
 };
 
 export default PopupWithForm;
